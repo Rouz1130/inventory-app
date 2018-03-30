@@ -5,17 +5,25 @@ import { Product } from '../product.model';
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
-  // styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
+
+  //@Input producList - the Product[] passed to us.
   @Input() productList: Product[];
+
+
+  //@Output onProductSelected - outputs the current Product whenever a new product is selected
   @Output() onProductSelected: EventEmitter<Product>;
 
+
+  //Property currentProduct - local state containing the currenlty selected Product
   private currentProduct: Product;
+
 
   constructor() {
     this.onProductSelected = new EventEmitter();
    }
+
 
    clicked(product: Product): void {
      this.currentProduct = product;
@@ -29,8 +37,5 @@ export class ProductListComponent {
 
      return product.sku === this.currentProduct.sku;
    }
-
-  ngOnInit() {
-  }
 
 }
